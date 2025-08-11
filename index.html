@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>測試網站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen font-sans">
+    
+    <!-- 頁面 A - 首頁 -->
+    <div id="pageA" class="page active">
+        <div class="container mx-auto px-6 py-12">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl font-bold text-gray-800 mb-4">歡迎來到測試網站</h1>
+                <p class="text-xl text-gray-600">這是首頁，請選擇你想要前往的頁面</p>
+            </div>
+            
+            <div class="max-w-md mx-auto">
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">導航選單</h2>
+                    <div class="space-y-4">
+                        <button onclick="showPage('pageB')" 
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-xl transition duration-300 transform hover:scale-105 shadow-lg">
+                            前往頁面 B
+                        </button>
+                        <button onclick="showPage('pageC')" 
+                                class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-6 rounded-xl transition duration-300 transform hover:scale-105 shadow-lg">
+                            前往頁面 C
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁面 B -->
+    <div id="pageB" class="page">
+        <div class="container mx-auto px-6 py-12">
+            <div class="max-w-2xl mx-auto text-center">
+                <div class="bg-white rounded-2xl shadow-xl p-12">
+                    <div class="mb-8">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-3xl font-bold text-blue-600">B</span>
+                        </div>
+                        <h1 class="text-4xl font-bold text-gray-800 mb-4">這是頁面 B</h1>
+                        <p class="text-lg text-gray-600 mb-8">歡迎來到頁面 B！這裡是第二個頁面的內容。</p>
+                    </div>
+                    
+                    <button onclick="showPage('pageA')" 
+                            class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-xl transition duration-300 transform hover:scale-105 shadow-lg">
+                        ← 回到首頁
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁面 C -->
+    <div id="pageC" class="page">
+        <div class="container mx-auto px-6 py-12">
+            <div class="max-w-2xl mx-auto text-center">
+                <div class="bg-white rounded-2xl shadow-xl p-12">
+                    <div class="mb-8">
+                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-3xl font-bold text-green-600">C</span>
+                        </div>
+                        <h1 class="text-4xl font-bold text-gray-800 mb-4">這是頁面 C</h1>
+                        <p class="text-lg text-gray-600 mb-8">歡迎來到頁面 C！這裡是第三個頁面的內容。</p>
+                    </div>
+                    
+                    <button onclick="showPage('pageA')" 
+                            class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-xl transition duration-300 transform hover:scale-105 shadow-lg">
+                        ← 回到首頁
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // 隱藏所有頁面
+            const allPages = document.querySelectorAll('.page');
+            allPages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // 顯示指定頁面
+            const targetPage = document.getElementById(pageId);
+            targetPage.classList.add('active');
+            targetPage.classList.add('fade-in');
+            
+            // 移除動畫類別以便下次使用
+            setTimeout(() => {
+                targetPage.classList.remove('fade-in');
+            }, 300);
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d5181122668f0f',t:'MTc1NDg4NzYzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
